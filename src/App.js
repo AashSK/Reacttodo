@@ -32,7 +32,11 @@ class App extends Component {
   }
   //Delete Todo
   delTodo = (id) => {
-    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] })
+    axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`, { "Access-Control-Allow-Origin": "*" })
+      .then(res => this.setState({
+        todos: [...this.state.todos
+          .filter(todo => todo.id !== id)]
+      }))
   }
   addTodo = (title) => {
     /*const newTodo = {
@@ -43,7 +47,7 @@ class App extends Component {
     axios.post('https://jsonplaceholder.typicode.com/todos', {
       title,
       completed: false
-    },{ crossdomain: true }).then(res => this.setState({
+    }, { "Access-Control-Allow-Origin": "*" }).then(res => this.setState({
       todos: [...this.state.todos, res.data]
     }));
   }
