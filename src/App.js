@@ -32,7 +32,7 @@ class App extends Component {
   }
   //Delete Todo
   delTodo = (id) => {
-    axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`, { "Access-Control-Allow-Origin": "*" })
+    axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`, {headers: { "Access-Control-Allow-Origin": "*" }})
       .then(res => this.setState({
         todos: [...this.state.todos
           .filter(todo => todo.id !== id)]
@@ -47,7 +47,7 @@ class App extends Component {
     axios.post('https://jsonplaceholder.typicode.com/todos', {
       title,
       completed: false
-    }, { "Access-Control-Allow-Origin": "*" }).then(res => this.setState({
+    }, {headers: { "Access-Control-Allow-Origin": "*" }}).then(res => this.setState({
       todos: [...this.state.todos, res.data]
     }));
   }
